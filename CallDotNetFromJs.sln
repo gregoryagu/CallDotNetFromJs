@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35605.110
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallDotNetFromJs", "CallDotNetFromJs.csproj", "{551EA885-36B5-4814-982E-FF052F35E5B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{551EA885-36B5-4814-982E-FF052F35E5B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551EA885-36B5-4814-982E-FF052F35E5B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551EA885-36B5-4814-982E-FF052F35E5B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551EA885-36B5-4814-982E-FF052F35E5B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {796C5EF6-70B8-4A6F-AF19-9F5A3380289A}
+	EndGlobalSection
+EndGlobal

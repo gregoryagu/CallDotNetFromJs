@@ -1,0 +1,73 @@
+﻿@page "/call-dotnet-1"
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<PageTitle>Call .NET 1</PageTitle>
+
+<h1>Call .NET Example 1</h1>
+
+<p>
+    <button id="btn">Trigger .NET static method</button>
+</p>
+
+<p>
+    @DataFromClient
+</p>
+
+<p>
+    See the result in the developer tools console.
+</p>
+
+@code {
+    private IJSObjectReference? module;
+
+    public string DataFromClient { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            //Get the Model Reference
+            module = await JS.InvokeAsync<IJSObjectReference>("import",
+                "./Components/Pages/CallDotnet1.razor.js");
+
+            //Call the function
+            await module.InvokeVoidAsync("addHandlers");
+        }
+    }
+
+    [JSInvokable]
+    public static void ReceiveWindowObject(IJSObjectReference objRef)
+    {
+        Console.WriteLine(objRef);
+    }
+
+
+    //This is a static method, so it we will not know which user executed it.
+    [JSInvokable]
+    public static Task<int[]> ReturnArrayAsync() =>
+        Task.FromResult(new int[] { 11, 12, 13 });
+
+    [JSInvokable]
+    public static Task<int[]> ReturnArrayAsyncWithParameter(int startPosition) =>
+      Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
+
+      //The name as used in Javascript is different from the .net Name.
+    [JSInvokable("ReturnArrayAsyncBob")]
+    public static async Task<int[]> ReturnArrayAsyncWithSpecialName(int startPosition) =>
+    await Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
+        }
+    }
+}

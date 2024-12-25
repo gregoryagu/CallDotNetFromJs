@@ -1,0 +1,1 @@
+﻿console.log("App.razor.js was NOT downloaded automatically");
